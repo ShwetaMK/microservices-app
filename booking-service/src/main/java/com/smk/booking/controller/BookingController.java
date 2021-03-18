@@ -28,33 +28,30 @@ public class BookingController {
 	@Value("${store_url}")
 	String storeUrl;
 
-	static {
-		System.out.println("in static ssl......................");
-        //for localhost testing 
-        javax.net.ssl.HttpsURLConnection.setDefaultHostnameVerifier(
-        new javax.net.ssl.HostnameVerifier(){
-
-            public boolean verify(String hostname,
-                    javax.net.ssl.SSLSession sslSession) {
-                if (hostname.equals("localhost")) {
-                    return true;
-                }
-                return false;
-            }
-        });
-    }
 //	@Autowired
 //	BookingService bookingService;
 
 	@Autowired
 	RestTemplate restTemplate;
 
+	@GetMapping("orders")
+	public ResponseEntity<OrdersDTO> getOrders() {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		HttpEntity<String> entity = new HttpEntity<String>(headers);
+
+		ResponseEntity<OrdersDTO> l = restTemplate.exchange(orderUrl, HttpMethod.GET, entity, OrdersDTO.class);
+		System.out.println(l);
+//		l.status(HttpStatus.OK);
+//		return l;
+		return ResponseEntity.status(HttpStatus.OK).body(l.getBody());
+//		return null;
+	}
+
 	@GetMapping("orders/{orderId}")
-	public ResponseEntity<OrdersDTO> getOrders(@PathVariable(required = false) Integer orderId) {
+	public ResponseEntity<OrdersDTO> getOrder(Integer orderId) {
 		String url = orderUrl;
-//		if (orderId != null) {
-//			url += orderId;
-//		}
+		url = url + "/" + orderId;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 		HttpEntity<String> entity = new HttpEntity<String>(headers);

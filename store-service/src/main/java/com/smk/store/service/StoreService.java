@@ -1,17 +1,16 @@
 package com.smk.store.service;
 
-import java.util.List;
-
 import com.smk.store.dto.StoreDTO;
+import com.smk.store.dto.StoresDTO;
 import com.smk.store.model.Store;
 
 public interface StoreService {
 
 	// Get List of All store items
-	public List<StoreDTO> getAllStore();
+	public StoresDTO getAllStore();
 
 	// Search Store item by using Id
-	public StoreDTO getStoreById(long storeId);
+	public StoresDTO getStoreById(long storeId);
 
 	// Add item into Store
 	public StoreDTO addStore(Store store);

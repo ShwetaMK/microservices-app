@@ -1,7 +1,5 @@
 package com.smk.store.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smk.store.dto.StoreDTO;
+import com.smk.store.dto.StoresDTO;
 import com.smk.store.model.Store;
 import com.smk.store.service.StoreService;
 
@@ -27,13 +26,13 @@ public class StoreController {
 	StoreService storeService;
 
 	@GetMapping
-	public ResponseEntity<List<StoreDTO>> getAllStore() {
+	public ResponseEntity<StoresDTO> getAllStore() {
 		return ResponseEntity.status(HttpStatus.OK).body(storeService.getAllStore());
 
 	}
 
 	@GetMapping("/{storeId}")
-	public ResponseEntity<StoreDTO> getStoreByid(@PathVariable int storeId) throws NotFoundException {
+	public ResponseEntity<StoresDTO> getStoreByid(@PathVariable int storeId) throws NotFoundException {
 		return ResponseEntity.status(HttpStatus.OK).body(storeService.getStoreById(storeId));
 
 	}
