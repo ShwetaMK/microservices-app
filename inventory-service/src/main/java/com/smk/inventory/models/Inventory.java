@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
+/*
+ * Inventory 
+ */
 @Entity
 public class Inventory {
 	@Id
