@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.smk.order.dto.OrderDTO;
 import com.smk.order.dto.OrdersDTO;
-import com.smk.order.model.Order;
+import com.smk.order.model.Orders;
 import com.smk.order.service.OrderService;
 
 @RestController
@@ -40,14 +40,14 @@ public class OrderController {
 	}
 
 	@PostMapping
-	public ResponseEntity<OrderDTO> addOrder(@RequestBody Order order) {
+	public ResponseEntity<OrderDTO> addOrder(@RequestBody Orders order) {
 
 		return ResponseEntity.status(HttpStatus.OK).body(orderService.addOrder(order));
 
 	}
 
 	@PutMapping("{orderId}")
-	public ResponseEntity<OrderDTO> updateOrder(@PathVariable int orderId, @RequestBody Order order) {
+	public ResponseEntity<OrderDTO> updateOrder(@PathVariable int orderId, @RequestBody Orders order) {
 		return ResponseEntity.status(HttpStatus.OK).body(orderService.updateOrder(orderId, order));
 
 	}

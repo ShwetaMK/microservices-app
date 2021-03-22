@@ -2,7 +2,6 @@ package com.smk.store.service;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 
 import org.junit.Before;
@@ -39,7 +38,7 @@ public class StoreServiceImplTest {
 	// ---------------
 //	@Autowired
 //	@MockBean
-	@Mock
+//	@Mock
 	private ModelMapper modelMapper;
 	// ---------------
 	@InjectMocks
@@ -54,7 +53,7 @@ public class StoreServiceImplTest {
 //		modelMapper.getConfiguration().setFieldMatchingEnabled(true) ;
 //		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STANDARD);
 //		modelMapper.addMappings(new Store());
-		new ModelMapper();
+//		new ModelMapper();
 		MockitoAnnotations.initMocks(this);
 	}
 

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.smk.order.dto.OrderDTO;
 import com.smk.order.dto.OrdersDTO;
-import com.smk.order.model.Order;
+import com.smk.order.model.Orders;
 import com.smk.order.repository.OrderRepository;
 import com.smk.order.service.OrderService;
 
@@ -24,9 +24,9 @@ public class OrderServiceImpl implements OrderService {
 	private ModelMapper modelMapper;
 
 	@Override
-	public OrdersDTO getAllOrder() {
+	public OrdersDTO get() {
 
-		List<OrderDTO> orderDtos = ((List<Order>) orderRepository.findAll()).stream()
+		List<OrderDTO> orderDtos = ((List<Orders>) orderRepository.findAll()).stream()
 				.map(o -> modelMapper.map(o, OrderDTO.class)).collect(Collectors.toList());
 		OrdersDTO orders = new OrdersDTO();
 		orders.setOrders((orderDtos));
@@ -35,7 +35,7 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public OrdersDTO getOrderById(long orderId) {
-		Order order = orderRepository.findById(orderId).get();
+		Orders order = orderRepository.findById(orderId).get();
 		List<OrderDTO> ordersDtos = new ArrayList();
 		ordersDtos.add(modelMapper.map(order, OrderDTO.class));
 		OrdersDTO orders = new OrdersDTO();
@@ -44,18 +44,18 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public OrderDTO addOrder(Order order) {
-		Order o = orderRepository.save(order);
+	public OrderDTO addOrder(Orders order) {
+		Orders o = orderRepository.save(order);
 		return modelMapper.map(o, OrderDTO.class);
 
 	}
 
 	@Override
-	public OrderDTO updateOrder(long orderId, Order order) {
-		Order oldOrder = orderRepository.findById(orderId).get();
+	public OrderDTO updateOrder(long orderId, Orders order) {
+		Orders oldOrder = orderRepository.findById(orderId).get();
 		oldOrder.setQuantity(order.getQuantity());
 		oldOrder.setStoreId(order.getStoreId());
-		Order o = orderRepository.save(oldOrder);
+		Orders o = orderRepository.save(oldOrder);
 		return modelMapper.map(o, OrderDTO.class);
 	}
 

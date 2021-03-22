@@ -32,21 +32,21 @@ public class StoreServiceImpl implements StoreService {
 //				.map(s -> modelMapper.map(s, StoreDTO.class)).collect(Collectors.toList());
 
 		System.out.println("====================================");
-		System.out.println("--------db data---------");
-		List<Store> ll = (List<Store>) storeRepository.findAll();
-		List<StoreDTO> ds = new ArrayList<>();
-		for (Store l : ll) {
-			System.out.println(l);
-			StoreDTO d = modelMapper.map(l, StoreDTO.class);
-			StoreDTO d1 = new StoreDTO();
-			BeanUtils.copyProperties(l, d1);
-			System.out.println(d);
-			ds.add(d1);
-		}
-		System.out.println("--------test data---------");
-		System.out.println(ds.get(0));
-		System.out.println(ds.get(1));
-		System.out.println("**************************************");
+//		System.out.println("--------db data---------");
+//		List<Store> ll = (List<Store>) storeRepository.findAll();
+//		List<StoreDTO> ds = new ArrayList<>();
+//		for (Store l : ll) {
+//			System.out.println(l);
+//			StoreDTO d = modelMapper.map(l, StoreDTO.class);
+//			StoreDTO d1 = new StoreDTO();
+//			BeanUtils.copyProperties(l, d1);
+//			System.out.println(d);
+//			ds.add(d1);
+//		}
+//		System.out.println("--------test data---------");
+//		System.out.println(ds.get(0));
+//		System.out.println(ds.get(1));
+//		System.out.println("**************************************");
 //		ll = createStores2Records();
 //		ds = new ArrayList<>();
 //		for (Store l : ll) {
@@ -59,7 +59,7 @@ public class StoreServiceImpl implements StoreService {
 //		System.out.println(ds.get(0));
 //		System.out.println(ds.get(1));
 //		System.out.println("-----------------");
-		System.out.println("====================================");
+//		System.out.println("====================================");
 		List<StoreDTO> storeDtos = ((List<Store>) storeRepository.findAll()).stream()
 				.map(o -> modelMapper.map(o, StoreDTO.class)).collect(Collectors.toList());
 

@@ -1,25 +1,18 @@
 package com.smk.order.service;
 
-import java.util.List;
-
 import com.smk.order.dto.OrderDTO;
 import com.smk.order.dto.OrdersDTO;
-import com.smk.order.model.Order;
+import com.smk.order.model.Orders;
 
 public interface OrderService {
 
-	// Get List of All order items
-	public OrdersDTO getAllOrder();
+	public OrdersDTO list();
 
-	// Search Order item by using Id
-	public OrdersDTO getOrderById(long orderId);
+	public OrdersDTO get(Long orderId);
 
-	// Add item into Order
-	public OrderDTO addOrder(Order order);
+	public OrderDTO save(Orders order);
 
-	// Update Order item information
-	public OrderDTO updateOrder(long orderId, Order order);
+//	public OrderDTO updateOrder(long orderId, Orders order);
 
-	// Delete order item
-	public void deleteOrderById(long orderId);
+	public void delete(Long orderId);
 }
