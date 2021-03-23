@@ -2,8 +2,13 @@ package com.smk.inventory.exception;
 
 import java.util.Date;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@NoArgsConstructor
 public class ErrorMessage {
-	private int statusCode;
+	private String errorCode;
 	private Date timestamp;
 	private String message;
 	private String description;
@@ -18,26 +23,10 @@ public class ErrorMessage {
 		this.description = description;
 	}
 
-	public ErrorMessage(int statusCode, Date timestamp, String message, String description) {
-		this.statusCode = statusCode;
+	public ErrorMessage(String errorCode, Date timestamp, String message, String description) {
+		this.errorCode = errorCode;
 		this.timestamp = timestamp;
 		this.message = message;
 		this.description = description;
-	}
-
-	public int getStatusCode() {
-		return statusCode;
-	}
-
-	public Date getTimestamp() {
-		return timestamp;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	public String getDescription() {
-		return description;
 	}
 }

@@ -66,11 +66,11 @@ public class InventoryDTO implements Serializable {
 		this.quantity = quantity;
 	}
 
-	public LocalDateTime getcreateTime() {
+	public LocalDateTime getCreateTime() {
 		return createTime;
 	}
 
-	public void setcreateTime(LocalDateTime createTime) {
+	public void setCreateTime(LocalDateTime createTime) {
 		this.createTime = createTime;
 	}
 

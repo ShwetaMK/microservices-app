@@ -3,7 +3,6 @@ package com.smk.inventory.service.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,21 +12,15 @@ import com.smk.inventory.models.Inventory;
 import com.smk.inventory.repository.InventoryRepository;
 import com.smk.inventory.service.InventoryService;
 
-import javassist.NotFoundException;
-
 @Service
 public class InventoryServiceImpl implements InventoryService {
 
 	@Autowired
 	private InventoryRepository inventoryRepository;
 
-	@Autowired
-	private ModelMapper modelMapper;
-
 	@Override
 	public List<InventoryDTO> listAll() {
 
-//		((List<Inventory>) inventoryRepository.findAll()).stream().
 		List<InventoryDTO> inventoryDtos = ((List<Inventory>) inventoryRepository.findAll()).stream()
 				.map(InventoryDTO::new).collect(Collectors.toList());
 		return inventoryDtos;
@@ -37,9 +30,7 @@ public class InventoryServiceImpl implements InventoryService {
 	@Override
 	public InventoryDTO get(Long inventoryId) {
 
-		Inventory inventory = getInventory(inventoryId);
-//		Inventory inventory = inventoryRepository.findById(inventoryId).get();
-		return new InventoryDTO(inventory);
+		return new InventoryDTO(getInventory(inventoryId));
 	}
 
 	private Inventory getInventory(Long inventoryId) {
@@ -56,7 +47,7 @@ public class InventoryServiceImpl implements InventoryService {
 	@Override
 	public Inventory update(Inventory inventory) {
 		getInventory(inventory.getInventoryId());
-		
+
 		return inventoryRepository.save(inventory);
 	}
 
@@ -65,5 +56,4 @@ public class InventoryServiceImpl implements InventoryService {
 		Inventory inventory = getInventory(inventoryId);
 		inventoryRepository.delete(inventory);
 	}
-
 }
