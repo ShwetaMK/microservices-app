@@ -40,15 +40,17 @@ public class InventoryServiceImpl implements InventoryService {
 	}
 
 	@Override
-	public void save(Inventory inventory) {
-		inventoryRepository.save(inventory);
+	public InventoryDTO save(Inventory inventory) {
+		Inventory inv = inventoryRepository.save(inventory);
+		return new InventoryDTO(inv);
 	}
 
 	@Override
-	public Inventory update(Inventory inventory) {
+	public InventoryDTO update(Inventory inventory) {
 		getInventory(inventory.getInventoryId());
 
-		return inventoryRepository.save(inventory);
+		Inventory inv = inventoryRepository.save(inventory);
+		return new InventoryDTO(inv);
 	}
 
 	@Override

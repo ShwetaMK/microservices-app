@@ -37,27 +37,16 @@ public class InventoryServiceImplTest {
 
 	@Mock
 	private InventoryRepository inventoryRepository;
-	// ---------------
-//	@Mock
-//	@Autowired
-//	@MockBean
-//	private ModelMapper modelMapper = new ModelMapper();
-//private ModelMapper modelMapper = modelmapp
-	// ---------------
-//	@Autowired
-//	@MockBean
-//	@Mock
-	private ModelMapper modelMapper;
-	// ---------------
+	 
 	@InjectMocks
-//	@Autowired
 	private InventoryServiceImpl inventoryService;
 
+	@Mock
+	InventoryDTO inventoryDTO;
 //	@Autowired
 
 	@Before
 	public void setUp() {
-		modelMapper = spy(new ModelMapper());
 //		modelMapper.getConfiguration().setFieldMatchingEnabled(true) ;
 //		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STANDARD);
 //		modelMapper.addMappings(new Inventory());
@@ -115,7 +104,9 @@ public class InventoryServiceImplTest {
 
 	@Test
 	public void testCreateInventory() {
+		
 		Inventory inv = InventoryTestData.createInventory_1();
+		when(inventoryRepository.save(inv)).thenReturn(inv);
 		inventoryService.save(inv);
 		verify(inventoryRepository, times(1)).save(inv);
 	}

@@ -49,7 +49,7 @@ public class InventoryController {
 	}
 
 	@GetMapping("/{inventoryId}")
-	public ResponseEntity<InventoryDTO> getInventoryByid(@Valid @PositiveOrZero @PathVariable Long inventoryId) {
+	public ResponseEntity<InventoryDTO> getInventoryById(@PathVariable Long inventoryId) {
 		return new ResponseEntity<>(inventoryService.get(inventoryId), HttpStatus.OK);
 	}
 
@@ -63,8 +63,8 @@ public class InventoryController {
 
 			throw new InvalidDataException(errMap);
 		}
-		inventoryService.save(inventory);
-		return new ResponseEntity<>(HttpStatus.CREATED);
+
+		return new ResponseEntity<>(inventoryService.save(inventory), HttpStatus.CREATED);
 
 	}
 

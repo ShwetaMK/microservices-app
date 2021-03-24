@@ -23,4 +23,5 @@ public class InventoryConfig {
 	public MethodValidationPostProcessor methodValidationPostProcessor() {
 		return new MethodValidationPostProcessor();
 	}
+
 }
